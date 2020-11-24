@@ -3,14 +3,16 @@
 
 ## users テーブル
 
-| Column        | Type   | Options     |
-| ------------- | ------ | ----------- |
-| nickname      | string | null: false |
-| email         | string | null: false |
-| password      | string | null: false |
-| name          | string | null: false |
-| furigana      | string | null: false |
-| birthday      | string | null: false |
+| Column               | Type   | Options     |
+| -------------------- | ------ | ----------- |
+| nickname             | string | null: false |
+| email                | string | null: false |
+| encrypted_password   | string | null: false |
+| first_name           | string | null: false |
+| family_name          | string | null: false |
+| first_name_furigana  | string | null: false |
+| family_name_furigana | string | null: false |
+| birthday             | date   | null: false |
 
 ### Association
 
@@ -23,12 +25,12 @@
 | --------------- | ---------- | ------------------------------ |
 | title           | string     | null: false                    |
 | explanation     | text       | null: false                    |
-| category        | string     | null: false                    |
-| status          | string     | null: false                    |
-| shipping charge | string     | null: false                    |
-| delivery area   | string     | null: false                    |
-| days to ship    | string     | null: false                    |
-| price           | string     | null: false                    |
+| category        | integer    | null: false                    |
+| status          | integer    | null: false                    |
+| shipping charge | integer    | null: false                    |
+| delivery area   | integer    | null: false                    |
+| days to ship    | integer    | null: false                    |
+| price           | integer    | null: false                    |
 | user            | references | null: false, foreign_key: true |
 ### Association
 
@@ -40,9 +42,6 @@
 
 | Column          | Type         | Options                        |
 | --------------- | ------------ | ------------------------------ |
-| card            | string       | null: false                    |
-| expiration date | string       | null: false                    |
-| security code   | string       | null: false                    |
 | phone number    | string       | null: false                    |
 | addresses       | references   | null: false, foreign_key: true |
 | user            | references   | null: false, foreign_key: true |
@@ -58,7 +57,7 @@
 
 | Column          | Type         | Options                        |
 | --------------- | ------------ | ------------------------------ |
-| prefecture      | string       | null: false                    |
+| prefecture      | integer      | null: false                    |
 | city            | string       | null: false                    |
 | address         | string       | null: false                    |
 | building name   | string       | null: false                    |
