@@ -15,7 +15,7 @@ describe User do
       it 'nicknameとemail、passwordとpassword_confirmation、氏名と振り仮名、生年月日が存在すれば登録できる' do
         expect(@user).to be_valid
       end
-      it 'passwordが6文字以上であれば登録できる' do
+      it 'passwordが6文字以上かつ英数字混合であれば登録できる' do
         @user.password = '000aaa'
         @user.password_confirmation = '000aaa'
         expect(@user).to be_valid
@@ -57,7 +57,7 @@ describe User do
         expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
       it 'passwordが存在してもpassword_confirmationが空では登録できない' do
-        @user.password = '000000'
+        @user.password = '00000a'
         @user.password_confirmation = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
@@ -68,9 +68,15 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
-      it 'passwordが英数字混合でないと登録できない' do
+      it 'passwordが数字のみでは登録できない' do
         @user.password = '000000'
         @user.password_confirmation = '000000'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password 半角英数字を使用してください")
+      end
+      it 'passwordが英語のみでは登録できない' do
+        @user.password = 'aaaaaa'
+        @user.password_confirmation = 'aaaaaa'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password 半角英数字を使用してください")
       end
@@ -99,8 +105,13 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("First name furigana can't be blank")
       end
-      it 'first_name_furiganaが全角カナ文字じゃないと登録できない' do
+      it 'first_name_furiganaが英数字では登録できない' do
         @user.first_name_furigana = 'aa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name furigana 全角カナ文字を使用してください")
+      end
+      it 'first_name_furiganaがひらがなでは登録できない' do
+        @user.first_name_furigana = 'あああ'
         @user.valid?
         expect(@user.errors.full_messages).to include("First name furigana 全角カナ文字を使用してください")
       end
@@ -109,8 +120,13 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Family name furigana can't be blank")
       end
-      it 'family_name_furiganaが全角カナ文字じゃないと登録できない' do
+      it 'family_name_furiganaが英数字では登録できない' do
         @user.family_name_furigana = 'aa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name furigana 全角カナ文字を使用してください")
+      end
+      it 'family_name_furiganaがひらがなでは登録できない' do
+        @user.family_name_furigana = 'ああ'
         @user.valid?
         expect(@user.errors.full_messages).to include("Family name furigana 全角カナ文字を使用してください")
       end

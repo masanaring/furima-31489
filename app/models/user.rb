@@ -7,11 +7,6 @@ class User < ApplicationRecord
         
   with_options presence: true do
    validates :nickname
-   validates :password
-   validates :first_name
-   validates :family_name
-   validates :first_name_furigana
-   validates :family_name_furigana
    validates :birthday
   end
   with_options presence: true, format: { with: /[ぁ-んァ-ヶー一-龠]/, message: '全角文字を使用してください' } do
