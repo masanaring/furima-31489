@@ -31,7 +31,7 @@ describe User do
       it 'emailに@がないと登録できない' do
         @user.email = 'testgmail.com'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
       it '重複したemailが存在する場合登録できない' do
         @user.save
@@ -67,13 +67,13 @@ describe User do
         @user.password = '000000'
         @user.password_confirmation = '000000'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password 半角英数字を使用してください")
+        expect(@user.errors.full_messages).to include('Password 半角英数字を使用してください')
       end
       it 'passwordが英語のみでは登録できない' do
         @user.password = 'aaaaaa'
         @user.password_confirmation = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password 半角英数字を使用してください")
+        expect(@user.errors.full_messages).to include('Password 半角英数字を使用してください')
       end
       it 'first_nameが空だと登録できない' do
         @user.first_name = ''
@@ -83,7 +83,7 @@ describe User do
       it 'first_nameが全角文字じゃないと登録できない' do
         @user.first_name = 'aaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name 全角文字を使用してください")
+        expect(@user.errors.full_messages).to include('First name 全角文字を使用してください')
       end
       it 'family_nameが空だと登録できない' do
         @user.family_name = ''
@@ -93,7 +93,7 @@ describe User do
       it 'family_nameが全角文字じゃないと登録できない' do
         @user.family_name = 'aaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family name 全角文字を使用してください")
+        expect(@user.errors.full_messages).to include('Family name 全角文字を使用してください')
       end
       it 'first_name_furiganaが空だと登録できない' do
         @user.first_name_furigana = ''
@@ -103,12 +103,12 @@ describe User do
       it 'first_name_furiganaが英数字では登録できない' do
         @user.first_name_furigana = 'aa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name furigana 全角カナ文字を使用してください")
+        expect(@user.errors.full_messages).to include('First name furigana 全角カナ文字を使用してください')
       end
       it 'first_name_furiganaがひらがなでは登録できない' do
         @user.first_name_furigana = 'あああ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name furigana 全角カナ文字を使用してください")
+        expect(@user.errors.full_messages).to include('First name furigana 全角カナ文字を使用してください')
       end
       it 'family_name_furiganaが空だと登録できない' do
         @user.family_name_furigana = ''
@@ -118,12 +118,12 @@ describe User do
       it 'family_name_furiganaが英数字では登録できない' do
         @user.family_name_furigana = 'aa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family name furigana 全角カナ文字を使用してください")
+        expect(@user.errors.full_messages).to include('Family name furigana 全角カナ文字を使用してください')
       end
       it 'family_name_furiganaがひらがなでは登録できない' do
         @user.family_name_furigana = 'ああ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family name furigana 全角カナ文字を使用してください")
+        expect(@user.errors.full_messages).to include('Family name furigana 全角カナ文字を使用してください')
       end
       it 'birthdayが空だと登録できない' do
         @user.birthday = ''
