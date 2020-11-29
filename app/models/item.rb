@@ -11,11 +11,6 @@ class Item < ApplicationRecord
   belongs_to :delivery_area
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :days_to_ship
-  
-
-
-
-
 
   with_options presence: true do
     validates :title
