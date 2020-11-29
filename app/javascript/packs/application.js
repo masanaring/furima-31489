@@ -7,7 +7,7 @@ require("@rails/ujs").start()
 
 require("@rails/activestorage").start()
 require("channels")
-require("/Users/kuratamasanari/projects/furima-31489/app/javascript/channels/item_price.js")
+require("../channels/item_price.js")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
