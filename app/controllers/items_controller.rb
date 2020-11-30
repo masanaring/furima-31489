@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action :find_params, only: [:show,:edit,:update,:move_to_index]
+  before_action :find_params, only: [:show,:edit,:update]
   before_action :move_to_index, only: :edit
-  
+
   def index
     @items = Item.includes(:user).order('created_at DESC')
   end
