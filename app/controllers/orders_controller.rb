@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
   before_action :move_to_index, only: [:index]
   before_action :sold_out, only: [:index]
+  
 
   def index
     @item = Item.find(params[:item_id])
@@ -45,6 +47,7 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
     redirect_to root_path if current_user.id == @item.user_id
   end
+
 
   def sold_out
     redirect_to root_path if @item.order.present?
