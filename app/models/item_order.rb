@@ -5,14 +5,16 @@ class ItemOrder
   # addressのバリデーション
 
   with_options presence: true do
+    validates :prefecture_id, numericality: { other_than: 1 }
     validates :city
     validates :token
+    validates :item_id
+    validates :user_id
     validates :address
     validates :phone_number, format: { with: /[0-9]/, message: '半角数字を使用してください' }
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
   end
 
-  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
 
   def save
     order = Order.create(item_id: item_id, user_id: user_id)
