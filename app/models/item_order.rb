@@ -11,7 +11,7 @@ class ItemOrder
     validates :item_id
     validates :user_id
     validates :address
-    validates :phone_number, format: { with: /[0-9]/, message: '半角数字を使用してください' }
+    validates :phone_number, format: { with: /[0-9]/ },length: { maximum: 11 }
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
   end
 

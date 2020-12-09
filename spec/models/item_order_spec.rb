@@ -82,6 +82,12 @@ RSpec.describe ItemOrder, type: :model do
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include("Phone number can't be blank")
       end
+
+      it 'phone_numberにはハイフンが不要で11桁以上だと保存できないこと' do
+        @item_order.phone_number = "090-1234-5678"
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+      end
     end
   end
 end
