@@ -32,6 +32,15 @@ class Item < ApplicationRecord
     validates :category_id, :status_id, :shipping_charge_id, :delivery_area_id, :days_to_ship_id
   end
 
+  def self.search(search)
+    if search != ""
+      Item.where('explanation LIKE(?)', "%#{search}%")
+      Item.where('title LIKE(?)', "%#{search}%")
+    else
+      Item.all
+    end
+  end
+
   # validate :image_presence
 
   # def image_presence
